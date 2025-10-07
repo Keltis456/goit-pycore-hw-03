@@ -21,7 +21,7 @@ def get_numbers_ticket(min, max, quantity):
     if max > 1000:
         return "Maximum number is greater than 1000"
     try:
-        return random.sample(range(min, max), quantity)
+        return sorted(random.sample(range(min, max), quantity))
     except ValueError:
         return "Invalid quantity"
 
@@ -35,3 +35,4 @@ print(get_numbers_ticket(1, 10, 10000))
 print(get_numbers_ticket(1, 10, 100000))
 print(get_numbers_ticket(1, 10, 1000000))
 print(get_numbers_ticket(1, 10, 15))
+print(get_numbers_ticket(1, 151, 150))
