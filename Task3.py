@@ -4,10 +4,15 @@ def normalize_phone(phone_number):
     """
     Normalize a phone number.
     Remove all non-digit and spaces characters except for the first '+'.
-    If number doesn't start with '+', add '+38'.
+    If number starts with '38', add '+'.
+    If number doesn't start with '+38', add '+38'.
     """
     normalized_phone = re.sub(r'[^0-9+]', '', phone_number)
-    return normalized_phone if normalized_phone.startswith('+') else "+38" + normalized_phone
+    if normalized_phone.startswith('38'):
+        normalized_phone = "+" + normalized_phone
+    if not normalized_phone.startswith('+38'):
+        normalized_phone = "+38" + normalized_phone
+    return normalized_phone
 
 raw_numbers = [
     "067\\t123 4567",

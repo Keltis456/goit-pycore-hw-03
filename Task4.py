@@ -5,6 +5,7 @@ users = [
     {"name": "John Doe", "birthday": "1985.10.13"},
     {"name": "Jane Smith", "birthday": "1990.01.27"},
     {"name": "Lane Smith", "birthday": "1990.10.9"},
+    {"name": "May Born-Today", "birthday": "1990.10.9"},
 ]
 
 """
@@ -24,13 +25,15 @@ def get_upcoming_birthdays(users):
         # Set the birthday to this year
         bday_this_year = bday.replace(year=current_year)
         # If birthday already passed this year, set to next year
-        if bday_this_year < today:
+        if bday_this_year.date() < today.date():
             bday_next = bday.replace(year=current_year + 1)
             days_until = (bday_next - today).days
+            if 0 <= days_until < 7:
+                upcoming.append({"name": user["name"], "congratulation_date": bday_next.strftime("%Y.%m.%d")})
         else:
-            days_until = (bday_this_year - today).days
-        if 0 <= days_until < 7:
-                upcoming.append(user)
+            days_until = (bday_this_year.date() - today.date()).days
+            if 0 <= days_until < 7:
+                upcoming.append({"name": user["name"], "congratulation_date": bday_this_year.strftime("%Y.%m.%d")})
     return upcoming
 
 upcoming_birthdays = get_upcoming_birthdays(users)

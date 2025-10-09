@@ -9,21 +9,21 @@ def get_numbers_ticket(min, max, quantity):
     return: list of random numbers
     """
     if quantity > max - min:
-        return "Quantity is greater than the range"
+        return []
     if quantity < 0:
-        return "Quantity is less than 0"
+        return []
     if min > max:
-        return "Minimum number is greater than maximum number"
+        return []
     if max - min < quantity:
-        return "Quantity is greater than the range"
+        return []
     if min < 1:
-        return "Minimum number is less than 1"
+        return []
     if max > 1000:
-        return "Maximum number is greater than 1000"
+        return []
     try:
         return sorted(random.sample(range(min, max), quantity))
     except ValueError:
-        return "Invalid quantity"
+        return []
 
 print(get_numbers_ticket(1, 10, 5))
 print(get_numbers_ticket(1, 10, 10))
